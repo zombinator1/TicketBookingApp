@@ -8,7 +8,7 @@ The goal is to build a seat reservation system for a multiplex cinema.
 2. The system lists movies available in the given time interval - title and screening
 times.
 3. The user chooses a particular screening.
-4. The system gives information regarding screening room and available seats.
+4. The system gives information regarding the screening room and available seats.
 5. The user chooses seats, and gives the name of the person doing the reservation
 (name and surname).
 6. The system gives back the total amount to pay and reservation expiration time.
@@ -29,8 +29,8 @@ H2 database was used.
   >
 </p>
 
-**SEAT** table is a table containing list of seats which are inside a room. This table is used only to create seat_reserved record.\
-**SEAT_RESERVED** - new list of records is created when admin adds new screening. Every list of seat_reserved is unique for a particular screening.\
+**SEAT** table is a table containing a list of seats which are inside a room. This table is used only to create seat_reserved record.\
+**SEAT_RESERVED** - a new list of records is created when the admin adds a new screening. Every list of seat_reserved is unique for a particular screening.\
 **SCREENING** ticket prices may be different for every screening. 
 
 ## Endpoints
@@ -47,14 +47,14 @@ There are four endpoints.
   >
 </p>
 
-**admin/add_screening** is a POST method endpoint. It is used to add new screening record to database. After this operation also a list of "SEAT_RESERVED" objects for a specified screening is being automatically created.\
+**admin/add_screening** is a POST method endpoint. It is used to add new screening records to a database. After this operation also a list of "SEAT_RESERVED" objects for a specified screening is being automatically created.\
 
-**reservation/screenings** is a GET method endpoint. This endpoint combinet with two request parameters: "from" and "to" retrieves list of screenings. Parameter "from" and "to" defines in what period of time viewer wants to find screenings. Screenings which starts in 15 min will not be shown, becouse it's too late.\
+**reservation/screenings** is a GET method endpoint. This endpoint combined with two request parameters: "from" and "to" retrieves a list of screenings. The parameter "from" and "to" defines in what period of time viewer wants to find screenings. Screenings which starts in 15 min will not be shown, becouse it's too late.\
 
 **reservation/free_seats** also GET with request parameter "screeningId". User sends UUID of a selected screening and receives a list of free seats - SEAT_RESERVED table.\
 
 **reservation/reserve_tickets** POST endpoint. Client sends a request model which contains surnames, names, ticket types, and ids of selected seats (from SEAT_RESERVED table).\
 
 ## How to run
-To run application first run deploy.sh, then DB_Init.sh. Once you run these scripts you can run useCase.sh.
-Application was build with maven 3.8.5 version.
+To run the application first run deploy.sh, then DB_Init.sh. Once you run these scripts you can run useCase.sh.
+The application was build with Maven 3.8.5 version.
